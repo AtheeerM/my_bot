@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <xacro:include filename="inertial_macros.xacro"/>
 
+    <!-- MATERIALS -->
     <material name="white">
         <color rgba="1 1 1 1" />
     </material>
@@ -20,18 +21,13 @@
     </material>
 
     <!-- BASE LINK -->
-
-    <link name="base_link">
-
-    </link>
-
+    <link name="base_link"/>
 
     <!-- CHASSIS LINK -->
-
     <joint name="chassis_joint" type="fixed">
         <parent link="base_link"/>
         <child link="chassis"/>
-        <origin xyz="-0.1 0 0"/>
+        <origin xyz="-0.1 0 0.05"/> <!-- Raised 5cm above ground -->
     </joint>
 
     <link name="chassis">
@@ -58,11 +54,10 @@
     </gazebo>
 
     <!-- LEFT WHEEL LINK -->
-
     <joint name="left_wheel_joint" type="continuous">
         <parent link="base_link"/>
         <child link="left_wheel"/>
-        <origin xyz="0 0.175 0" rpy="-${pi/2} 0 0" />
+        <origin xyz="0 0.175 0.05" rpy="-${pi/2} 0 0"/> <!-- lifted wheel -->
         <axis xyz="0 0 1"/>
     </joint>
 
@@ -85,17 +80,15 @@
 
     <gazebo reference="left_wheel">
         <material>Gazebo/Blue</material>
+        <mu1 value="1.0"/>
+        <mu2 value="1.0"/>
     </gazebo>
 
-
-
-
     <!-- RIGHT WHEEL LINK -->
-
     <joint name="right_wheel_joint" type="continuous">
         <parent link="base_link"/>
         <child link="right_wheel"/>
-        <origin xyz="0 -0.175 0" rpy="${pi/2} 0 0" />
+        <origin xyz="0 -0.175 0.05" rpy="${pi/2} 0 0"/> <!-- lifted wheel -->
         <axis xyz="0 0 -1"/>
     </joint>
 
@@ -118,17 +111,16 @@
 
     <gazebo reference="right_wheel">
         <material>Gazebo/Blue</material>
+        <mu1 value="1.0"/>
+        <mu2 value="1.0"/>
     </gazebo>
 
-
     <!-- CASTER WHEEL LINK -->
-
     <joint name="caster_wheel_joint" type="fixed">
         <parent link="chassis"/>
         <child link="caster_wheel"/>
-        <origin xyz="0.24 0 0"/>
+        <origin xyz="0.24 0 -0.025"/> <!-- lowered slightly under chassis -->
     </joint>
-
 
     <link name="caster_wheel">
         <visual>
