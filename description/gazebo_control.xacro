@@ -1,42 +1,17 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <!-- Differential Drive Plugin for ros_gz_sim -->
+  <!-- Differential Drive Plugin -->
   <gazebo>
-    <plugin name="ros_gz_diff_drive" filename="libgz-sim-diff-drive-system.so">
-      
-      <!-- ROS2 integration -->
-      <ros>
-        <namespace>/</namespace>
-        <!-- Remapping for ROS2 topics -->
-        <remapping>cmd_vel:=cmd_vel</remapping>
-        <remapping>odom:=odom</remapping>
-      </ros>
-
-      <!-- Wheel Information -->
+    <plugin name="diff_drive" filename="ignition-gazebo-diff-drive-system">
       <left_joint>left_wheel_joint</left_joint>
       <right_joint>right_wheel_joint</right_joint>
       <wheel_separation>0.35</wheel_separation>
       <wheel_radius>0.05</wheel_radius>
-
-      <!-- Motion Limits -->
-      <max_wheel_torque>200</max_wheel_torque>
-      <max_wheel_acceleration>10.0</max_wheel_acceleration>
-
-      <!-- Odometry and TF -->
       <odom_frame>odom</odom_frame>
       <robot_base_frame>base_link</robot_base_frame>
-      <publish_odom>true</publish_odom>
-      <publish_odom_tf>true</publish_odom_tf>
-      <publish_wheel_tf>true</publish_wheel_tf>
-
-      <!-- Update topic names for ROS2 convention -->
       <topic>cmd_vel</topic>
       <odom_topic>odom</odom_topic>
-
-      <!-- Optional: Update for ROS2 TF2 -->
-      <tf_topic>tf</tf_topic>
-
     </plugin>
   </gazebo>
 
