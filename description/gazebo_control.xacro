@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <!-- Differential Drive Plugin -->
+  <!-- Option 1: Try with full library path -->
   <gazebo>
-    <plugin name="diff_drive" filename="ignition-gazebo-diff-drive-system">
+    <plugin name="ignition::gazebo::systems::DiffDrive" filename="libignition-gazebo-diff-drive-system.so">
       <left_joint>left_wheel_joint</left_joint>
       <right_joint>right_wheel_joint</right_joint>
       <wheel_separation>0.35</wheel_separation>
