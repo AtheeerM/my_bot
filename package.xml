@@ -1,40 +1,34 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypelayout="1.0"?>
 <package format="3">
-  <name>my_diff_robot</name>
+  <name>my_bot</name>
   <version>1.0.0</version>
-  <description>A differential drive robot with Gazebo simulation</description>
-  <maintainer email="atheeermohmed@gmail.com">Atheer</maintainer>
+  <description>Differential drive robot with Gazebo Fortress</description>
+  <maintainer email="you@email.com">Your Name</maintainer>
   <license>Apache-2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
+  <!-- Gazebo Fortress dependencies -->
+  <depend>ros_gz_sim</depend>
+  <depend>ros_gz_bridge</depend>
+
   <!-- ROS 2 Control dependencies -->
-  <exec_depend>ros2_control</exec_depend>
-  <exec_depend>ros2_controllers</exec_depend>
-  <exec_depend>gz_ros2_control</exec_depend>
-  <exec_depend>controller_manager</exec_depend>
+  <depend>ros2_control</depend>
+  <depend>ros2_controllers</depend>
+  <depend>gz_ros2_control</depend>
+  <depend>controller_manager</depend>
   
   <!-- Controller dependencies -->
-  <exec_depend>diff_drive_controller</exec_depend>
-  <exec_depend>joint_state_broadcaster</exec_depend>
-  
-  <!-- Simulation dependencies -->
-  <exec_depend>gazebo_ros</exec_depend>
-  
-  <!-- Robot description dependencies -->
-  <exec_depend>xacro</exec_depend>
-  <exec_depend>robot_state_publisher</exec_depend>
+  <depend>diff_drive_controller</depend>
+  <depend>joint_state_broadcaster</depend>
   
   <!-- Common ROS 2 dependencies -->
-  <exec_depend>rclcpp</exec_depend>
-  <exec_depend>std_msgs</exec_depend>
-  <exec_depend>geometry_msgs</exec_depend>
-  <exec_depend>sensor_msgs</exec_depend>
-  <exec_depend>tf2_ros</exec_depend>
-  <exec_depend>ros_gz_sim</exec_depend>
-<exec_depend>ros_gz_bridge</exec_depend>
-<exec_depend>gz_ros2_control</exec_depend>
-<exec_depend>ros2_control</exec_depend>
-<exec_depend>ros2_controllers</exec_depend>
+  <depend>rclcpp</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>tf2_ros</depend>
+  <depend>robot_state_publisher</depend>
+  <depend>xacro</depend>
 </package>
