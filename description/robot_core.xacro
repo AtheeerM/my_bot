@@ -2,6 +2,9 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
     <xacro:include filename="inertial_macros.xacro"/>
+    
+    <!-- Add ros2_control xacro include -->
+    <xacro:include filename="$(find ros2_control_xacro_utils)/xacro/ros2_control.xacro" />
 
     <material name="white">
         <color rgba="1 1 1 1" />
@@ -20,13 +23,10 @@
     </material>
 
     <!-- BASE LINK -->
-
     <link name="base_link">
-
     </link>
 
     <!-- CHASSIS LINK -->
-
     <joint name="chassis_joint" type="fixed">
         <parent link="base_link"/>
         <child link="chassis"/>
@@ -57,7 +57,6 @@
     </gazebo>
 
     <!-- LEFT WHEEL LINK -->
-
     <joint name="left_wheel_joint" type="continuous">
         <parent link="base_link"/>
         <child link="left_wheel"/>
@@ -86,11 +85,7 @@
         <material>Gazebo/Blue</material>
     </gazebo>
 
-
-
-
     <!-- RIGHT WHEEL LINK -->
-
     <joint name="right_wheel_joint" type="continuous">
         <parent link="base_link"/>
         <child link="right_wheel"/>
@@ -119,15 +114,12 @@
         <material>Gazebo/Blue</material>
     </gazebo>
 
-
     <!-- CASTER WHEEL LINK -->
-
     <joint name="caster_wheel_joint" type="fixed">
         <parent link="chassis"/>
         <child link="caster_wheel"/>
         <origin xyz="0.24 0 0"/>
     </joint>
-
 
     <link name="caster_wheel">
         <visual>
@@ -150,6 +142,37 @@
         <material>Gazebo/Black</material>
         <mu1 value="0.001"/>
         <mu2 value="0.001"/>
+    </gazebo>
+
+    <!-- ========== ROS2 CONTROL CONFIGURATION ========== -->
+    <ros2_control name="diff_drive_robot" type="system">
+        <hardware>
+            <plugin>gz_ros2_control/GazeboSystem</plugin>
+        </hardware>
+        <joint name="left_wheel_joint">
+            <command_interface name="velocity">
+                <param name="min">-10.0</param>
+                <param name="max">10.0</param>
+            </command_interface>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+        <joint name="right_wheel_joint">
+            <command_interface name="velocity">
+                <param name="min">-10.0</param>
+                <param name="max">10.0</param>
+            </command_interface>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+    </ros2_control>
+
+    <!-- ========== GAZEBO ROS2 CONTROL PLUGIN ========== -->
+    <gazebo>
+        <plugin filename="libgz_ros2_control-system.so" name="gz_ros2_control::GazeboSystem">
+            <parameters>$(find my_bot)/config/diff_drive_controllers.yaml</parameters>
+            <controller_manager>controller_manager</controller_manager>
+        </plugin>
     </gazebo>
 
 </robot>
