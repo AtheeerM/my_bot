@@ -166,7 +166,9 @@
         </joint>
     </ros2_control>
 
-   
+    <!-- ========== GAZEBO ROS2 CONTROL PLUGIN ========== -->
+  
+<gazebo>
   <plugin filename="libgz_ros2_control-system.so" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
     <parameters>$(find my_bot)/config/diff_drive_controllers.yaml</parameters>
   </plugin>
