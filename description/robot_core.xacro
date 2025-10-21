@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
-<sdf version="1.8">
+
     <xacro:include filename="inertial_macros.xacro"/>
     
 
@@ -166,6 +166,6 @@
         </joint>
     </ros2_control>
 
-    
+
 
 </robot>
