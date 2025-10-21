@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
-
+<sdf version="1.8">
     <xacro:include filename="inertial_macros.xacro"/>
     
 
@@ -166,12 +166,6 @@
         </joint>
     </ros2_control>
 
-    <!-- ========== GAZEBO ROS2 CONTROL PLUGIN ========== -->
-    <gazebo>
-        <plugin filename="libgz_ros2_control-system.so" name="gz_ros2_control::GazeboSystem">
-            <parameters>$(find my_bot)/config/diff_drive_controllers.yaml</parameters>
-            <controller_manager>controller_manager</controller_manager>
-        </plugin>
-    </gazebo>
+    
 
 </robot>
