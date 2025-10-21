@@ -3,9 +3,8 @@
 
     <xacro:include filename="inertial_macros.xacro"/>
     
-    <!-- Add ros2_control xacro include -->
-    <xacro:include filename="$(find ros2_control_xacro_utils)/xacro/ros2_control.xacro" />
 
+   
     <material name="white">
         <color rgba="1 1 1 1" />
     </material>
