@@ -3,50 +3,48 @@ controller_manager:
     update_rate: 100  # Hz
     use_sim_time: true
 
-    # Diff Drive Controller
+    # Controllers to load
     diff_drive_controller:
       type: diff_drive_controller/DiffDriveController
-      ros__parameters:
-        # Wheel configuration
-        left_wheel_names: ["left_wheel_joint"]
-        right_wheel_names: ["right_wheel_joint"]
-        wheel_separation: 0.35
-        wheels_radius: 0.05
-        
-        # Frame IDs
-        base_frame_id: "base_link"
-        odom_frame_id: "odom"
-        
-        # Publishing configuration
-        publish_rate: 50.0
-        enable_odom_tf: true
-        
-        # Odometry covariance (uncertainty)
-        pose_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
-        twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
-        
-        # Velocity limits for safety
-        linear:
-          x:
-            has_velocity_limits: true
-            max_velocity: 0.5    # m/s
-            min_velocity: -0.5   # m/s
-            has_acceleration_limits: true
-            max_acceleration: 1.0  # m/s²
-        angular:
-          z:
-            has_velocity_limits: true
-            max_velocity: 2.0    # rad/s
-            min_velocity: -2.0   # rad/s
-            has_acceleration_limits: true
-            max_acceleration: 3.0  # rad/s²
-        
-        # Use modern ROS 2 control interface
-        use_stamped_vel: false
-        
-        # Timeout for safety (stop if no commands received)
-        cmd_vel_timeout: 0.5  # seconds
-
-    # Joint State Broadcaster (publishes joint positions/velocities)
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
+    my_controller:
+      type: my_controller/MyController  # custom controller plugin
+
+diff_drive_controller:
+  ros__parameters:
+    left_wheel_names: ["left_wheel_joint"]
+    right_wheel_names: ["right_wheel_joint"]
+    wheel_separation: 0.35
+    wheels_radius: 0.05
+    base_frame_id: "base_link"
+    odom_frame_id: "odom"
+    publish_rate: 50.0
+    enable_odom_tf: true
+    pose_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
+    twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
+    linear:
+      x:
+        has_velocity_limits: true
+        max_velocity: 0.5
+        min_velocity: -0.5
+        has_acceleration_limits: true
+        max_acceleration: 1.0
+    angular:
+      z:
+        has_velocity_limits: true
+        max_velocity: 2.0
+        min_velocity: -2.0
+        has_acceleration_limits: true
+        max_acceleration: 3.0
+    use_stamped_vel: false
+    cmd_vel_timeout: 0.5
+
+joint_state_broadcaster:
+  ros__parameters: {}
+
+my_controller:
+  ros__parameters:
+    joints: ["joint1", "joint2"]
+    interface_names: ["position"]
+    gain: 1.0
