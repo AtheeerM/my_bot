@@ -25,7 +25,7 @@
         </ros2_control>
     <!-- Gazebo reference for gz_ros2_control -->
    <gazebo>
-  <plugin name="gz_ros2_control::GazeboSimROS2ControlPlugin" filename="libgz_ros2_control-system">
+  <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">>
     <robot_param>robot_description</robot_param>
     <robot_param_node>robot_state_publisher</robot_param_node>
     <parameters>$(find my_bot)/config/diff_drive_controllers.yaml</parameters>
