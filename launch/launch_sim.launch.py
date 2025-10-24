@@ -64,10 +64,6 @@ def generate_launch_description():
         output='screen'
     )
 
-    spawn_my_controller = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'my_controller'],
-        output='screen'
-    )
 
     # --- Ensure controllers load after the robot is spawned ---
     load_controllers_event_handler = RegisterEventHandler(
@@ -76,7 +72,6 @@ def generate_launch_description():
             on_exit=[
                 spawn_joint_state_broadcaster,
                 spawn_diff_drive_controller,
-                spawn_my_controller
             ]
         )
     )
