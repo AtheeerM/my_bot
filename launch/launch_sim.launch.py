@@ -35,7 +35,7 @@ def generate_launch_description():
                 'gz_sim.launch.py'
             ])
         ]),
-        launch_arguments={'gz_args': '-r empty.sdf'}.items()
+        launch_arguments={'gz_args': '-r empty.sdf -v 4'}.items()
     )
 
     spawn_entity = Node(
