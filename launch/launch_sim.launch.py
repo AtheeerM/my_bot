@@ -103,5 +103,6 @@ def generate_launch_description():
         gazebo,
         spawn_entity,
         diff_drive_spawner,
+        delayed_diff_drive_spawner,
         joint_broad_spawner,
     ])
