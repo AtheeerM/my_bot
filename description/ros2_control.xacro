@@ -3,8 +3,8 @@
 
    
 
-    <xacro:if value="$(arg sim_mode)">
-        <ros2_control name="GazeboSystem" type="system">
+
+    <ros2_control name="GazeboSystem" type="system">
             <hardware>
                 <plugin>gz_ros2_control/GazeboSimSystem</plugin>
             </hardware>
@@ -25,12 +25,10 @@
                 <state_interface name="position"/>
             </joint>
         </ros2_control>
-    </xacro:if>
 
     <gazebo>
         <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
             <parameters>$(find my_bot)/config/my_controllers.yaml</parameters>
-            <parameters>$(find my_bot)/config/gaz_ros2_ctl_use_sim.yaml</parameters>
             <controller_manager>controller_manager</controller_manager>
         </plugin>
     </gazebo>
