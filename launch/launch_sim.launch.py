@@ -14,6 +14,7 @@ def generate_launch_description():
 
   
 
+    pkg_path = get_package_share_directory('my_bot')
     package_name='my_bot'
     rsp = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
