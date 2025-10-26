@@ -19,7 +19,7 @@ def generate_launch_description():
     # --- Controller configuration YAML ---
     controller_config = os.path.join(pkg_path, 'config', 'diff_drive_controlles.yaml')
 
-       rsp = IncludeLaunchDescription(
+    rsp = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory(package_name),'launch','rsp.launch.py'
                 )]), launch_arguments={'use_sim_time': 'true', 'use_ros2_control': 'true'}.items()
