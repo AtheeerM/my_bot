@@ -77,6 +77,17 @@ def generate_launch_description():
         arguments=["joint_state_broadcaster"],
     )
 
+    bridge_params = os.path.join(get_package_share_directory(package_name),'config','gz_bridge.yaml')
+    ros_gz_bridge = Node(
+        package="ros_gz_bridge",
+        executable="parameter_bridge",
+        arguments=[
+            '--ros-args',
+            '-p',
+            f'config_file:={bridge_params}',
+        ]
+    )
+
 
     # Code for delaying a node (I haven't tested how effective it is)
     # 
@@ -104,4 +115,5 @@ def generate_launch_description():
         spawn_entity,
         diff_drive_spawner,
         joint_broad_spawner,
+        ros_gz_bridge
     ])
