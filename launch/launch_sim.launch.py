@@ -49,16 +49,17 @@ def generate_launch_description():
         output='screen'
     )
 
-    # --- Ensure controllers load after controller_manager is ready ---
+    # --- Ensure controllers load after the robot is spawned ---
     load_controllers_event_handler = RegisterEventHandler(
         event_handler=OnProcessExit(
-            target_action=controller_manager,  # Wait for controller_manager to start
+            target_action=spawn_entity,
             on_exit=[
                 spawn_joint_state_broadcaster,
                 spawn_diff_drive_controller,
             ]
         )
     )
+
 
     return LaunchDescription([
         rsp,
