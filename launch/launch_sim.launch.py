@@ -29,14 +29,7 @@ def generate_launch_description():
         launch_arguments={'gz_args': '-r empty.sdf -v 4'}.items()
     )
 
-    controller_config = os.path.join(pkg_path, 'config', 'my_controllers.yaml')
     
-    controller_manager = Node(
-        package='controller_manager',
-        executable='ros2_control_node',
-        parameters=[controller_config],
-        output='screen'
-    )
 
     spawn_entity = Node(
         package='ros_gz_sim',
