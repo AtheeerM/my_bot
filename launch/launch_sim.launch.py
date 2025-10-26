@@ -10,15 +10,11 @@ import xacro
 
 
 def generate_launch_description():
-    pkg_path = get_package_share_directory('my_bot')
+    
 
-    # --- Process URDF ---
-    xacro_file = os.path.join(pkg_path, 'description', 'robot.urdf.xacro')
-    robot_description = xacro.process_file(xacro_file).toxml()
+  
 
-    # --- Controller configuration YAML ---
-    controller_config = os.path.join(pkg_path, 'config', 'diff_drive_controlles.yaml')
-
+    package_name='my_bot'
     rsp = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory(package_name),'launch','rsp.launch.py'
@@ -43,14 +39,19 @@ def generate_launch_description():
         output='screen'
     )
 
-    # --- ros2_control node (controller manager) ---
-    controller_manager = Node(
-        package='controller_manager',
-        executable='ros2_control_node',
-        parameters=[controller_config],
-        output='screen'
+    diff_drive_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["diff_cont"],
     )
 
+    joint_broad_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["joint_broad"],
+    )
+
+  
     # --- Spawn controllers after robot is loaded ---
     spawn_joint_state_broadcaster = ExecuteProcess(
         cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'joint_state_broadcaster'],
@@ -85,6 +86,8 @@ def generate_launch_description():
         gazebo,
         controller_manager,
         spawn_entity,
+        diff_drive_spawner,
+        joint_broad_spawner,
         twist_mux,
         load_controllers_event_handler
     ])
