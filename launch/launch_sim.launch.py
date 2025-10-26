@@ -19,12 +19,10 @@ def generate_launch_description():
     # --- Controller configuration YAML ---
     controller_config = os.path.join(pkg_path, 'config', 'diff_drive_controlles.yaml')
 
-    # --- Nodes ---
-    robot_state_publisher = Node(
-        package='robot_state_publisher',
-        executable='robot_state_publisher',
-        parameters=[{'robot_description': robot_description, 'use_sim_time': True}],
-        output='screen'
+       rsp = IncludeLaunchDescription(
+                PythonLaunchDescriptionSource([os.path.join(
+                    get_package_share_directory(package_name),'launch','rsp.launch.py'
+                )]), launch_arguments={'use_sim_time': 'true', 'use_ros2_control': 'true'}.items()
     )
 
     gazebo = IncludeLaunchDescription(
@@ -64,7 +62,13 @@ def generate_launch_description():
         output='screen'
     )
 
-
+    twist_mux_params = os.path.join(get_package_share_directory(package_name),'config','twist_mux.yaml')
+    twist_mux = Node(
+            package="twist_mux",
+            executable="twist_mux",
+            parameters=[twist_mux_params, {'use_sim_time': True}],
+            remappings=[('/cmd_vel_out','/diff_cont/cmd_vel_unstamped')]
+        )
     # --- Ensure controllers load after the robot is spawned ---
     load_controllers_event_handler = RegisterEventHandler(
         event_handler=OnProcessExit(
@@ -77,9 +81,10 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        robot_state_publisher,
+        rsp,
         gazebo,
         controller_manager,
         spawn_entity,
+        twist_mux,
         load_controllers_event_handler
     ])
