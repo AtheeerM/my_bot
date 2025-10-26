@@ -63,7 +63,6 @@ def generate_launch_description():
     return LaunchDescription([
         rsp,
         gazebo,
-        controller_manager,
         spawn_entity,
         load_controllers_event_handler
     ])
