@@ -26,6 +26,10 @@ diff_drive_controller:
     ]
     wheel_separation: 0.13
     wheel_radius: 0.02
+    use_stamped_vel: false
+    open_loop: false
+    enable_odom_tf: true
+
 
     # use_stamped_vel: false
 
