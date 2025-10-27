@@ -144,7 +144,6 @@
   <gazebo reference="chassis-link">
     <material>Gazebo/DarkGrey</material>
   </gazebo>
-  <gazebo>
    
   <gazebo reference="front-right-wheel-link">
     <mu1>10000.0 </mu1>
