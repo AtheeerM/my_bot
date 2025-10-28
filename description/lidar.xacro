@@ -6,13 +6,13 @@
     <parent link="chassis-link"/>
     <child link="laser_frame"/>
     <!-- place laser centered on chassis and slightly above -->
-    <origin xyz="0 0 0.02" rpy="0 0 0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
 </joint>
 
 <link name="laser_frame">
     <visual>
         <geometry>
-            <cylinder radius="0.01" length="0.001"/>
+            <cylinder radius="0.01" length="0.03"/>
         </geometry>
         <material name="blue"/>
     </visual>
