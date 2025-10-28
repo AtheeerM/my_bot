@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+<xacro:include filename="inertial_macros.xacro"/>
 <!-- Laser mounted on top of chassis -->
 <joint name="laser_joint" type="fixed">
     <parent link="chassis-link"/>
