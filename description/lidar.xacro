@@ -23,7 +23,7 @@
   <joint name="joint-chassis-lidar" type="fixed">
     <parent link="chassis-link"/>
     <child link="lidar_link"/>
-    <origin xyz="0 0 0.06" rpy="0 0 0"/>
+    <origin xyz="0 0 0.03" rpy="0 0 0"/>
   </joint>
 
   <!-- Gazebo Fortress (gz-sim) sensor: GPU lidar publishing on a gz transport topic -->
@@ -56,7 +56,7 @@
       </ray>
 
       <!-- Optional: set a custom gz transport topic (otherwise an auto one is used) -->
-      <topic>/lidar/scan</topic> 
+      <topic>/scan</topic> 
     </sensor>
   </gazebo>
   </robot>
