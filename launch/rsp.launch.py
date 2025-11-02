@@ -43,9 +43,10 @@ def generate_launch_description():
         package="tf2_ros",
         executable="static_transform_publisher",
         # new-style args: x y z qx qy qz qw parent child
-        arguments=["--x","0","--y","0","--z","0.06",
+        arguments=[ "--frame-id", "base_link",
+            "--child-frame-id", "my_bot/base_link/lidar","--x","0","--y","0","--z","0.06",
             "--qx","0","--qy","0","--qz","0","--qw","1",
-            "base_link","my_bot/base_link/lidar"],
+            ],
         name="lidar_static_tf",
         output="screen",
         )
