@@ -53,8 +53,9 @@
           <mean>0.0</mean>
           <stddev>0.01</stddev>
         </noise>
+        
       </ray>
-
+      <visualize>true</visualize> 
       <!-- Optional: set a custom gz transport topic (otherwise an auto one is used) -->
       <topic>/scan</topic> 
     </sensor>
