@@ -1,3 +1,6 @@
+  <?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
   <!-- LiDAR link centered above the chassis -->
   <link name="lidar_link">
     <visual>
