@@ -39,6 +39,16 @@ def generate_launch_description():
             'use_sim_time': use_sim_time
         }]
     )
+    Lidar_Scan=Node(
+        package="tf2_ros",
+        executable="static_transform_publisher",
+        # new-style args: x y z qx qy qz qw parent child
+        arguments=["--x","0","--y","0","--z","0.06",
+            "--qx","0","--qy","0","--qz","0","--qw","1",
+            "base_link","my_bot/base_link/lidar"],
+        name="lidar_static_tf",
+        output="screen",
+        )
 
     return LaunchDescription([
         DeclareLaunchArgument(
@@ -51,5 +61,5 @@ def generate_launch_description():
             default_value='true',
             description='Enable ros2_control interfaces in the xacro'
         ),
-        node_robot_state_publisher
+        node_robot_state_publisher,Lidar_Scan
     ])
