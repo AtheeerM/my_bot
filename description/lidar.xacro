@@ -52,9 +52,16 @@
             <max>10.0</max>
             <resolution>0.01</resolution>
         </range>
-    </ray>
-    <always_on>1</always_on>
-    <visualize>true</visualize>
-   </sensor>
+      </ray>
+      <always_on>1</always_on>
+      <visualize>true</visualize>
+      <plugin name="laser_controller" filename="libgazebo_ros_ray_sensor.so">
+                <ros>
+                    <argument>~/out:=scan</argument>
+                </ros>
+                <output_type>sensor_msgs/LaserScan</output_type>
+                <frame_name>laser_frame</frame_name>
+      </plugin>
+     </sensor>
   </gazebo>
 </robot>
