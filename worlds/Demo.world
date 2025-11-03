@@ -1,43 +1,45 @@
 <sdf version='1.9'>
   <world name='demo'>
-    <plugin
-        filename="ignition-gazebo-physics-system"
-        name="ignition::gazebo::systems::Physics">
-    </plugin>
-    <plugin
-        filename="ignition-gazebo-scene-broadcaster-system"
-        name="ignition::gazebo::systems::SceneBroadcaster">
-    </plugin>
-    <plugin
-      filename="libignition-gazebo-sensors-system.so"
-      name="ignition::gazebo::systems::Sensors">
-      <render_engine>ogre2</render_engine>
-    </plugin>
+     <plugin
+         filename="ignition-gazebo-physics-system"
+         name="ignition::gazebo::systems::Physics">
+      </plugin>
+      <plugin
+         filename="ignition-gazebo-scene-broadcaster-system"
+         name="ignition::gazebo::systems::SceneBroadcaster">
+      </plugin>
+      <plugin
+         filename="libignition-gazebo-sensors-system.so"
+         name="ignition::gazebo::systems::Sensors">
+         <render_engine>ogre2</render_engine>
+       </plugin>
 
-    <model name='wall'>
-    <static>true</static>
-    <pose>5 0 0 0 0 0</pose><!--pose relative to the world-->
-    <link name='box'>
-        <pose/>
-        <visual name='visual'>
-            <geometry>
-                <box>
-                    <size>0.5 10.0 2.0</size>
-                </box>
-            </geometry>
+       <model name='wall'>
+           <static>true</static>
+           <pose>5 0 0 0 0 0</pose><!--pose relative to the world-->
+           <link name='box'>
+               <pose/>
+               <visual name='visual'>
+                  <geometry>
+                     <box>
+                         <size>0.5 10.0 2.0</size>
+                     </box>
+                   </geometry>
             <!--let's add color to our link-->
-            <material>
-                <ambient>0.0 0.0 1.0 1</ambient>
-                <diffuse>0.0 0.0 1.0 1</diffuse>
-                <specular>0.0 0.0 1.0 1</specular>
-            </material>
-        </visual>
-        <collision name='collision'>
-            <geometry>
-                <box>
-                    <size>0.5 10.0 2.0</size>
-                </box>
-            </geometry>
-        </collision>
-    </link>
-    </model>
+                  <material>
+                      <ambient>0.0 0.0 1.0 1</ambient>
+                      <diffuse>0.0 0.0 1.0 1</diffuse>
+                      <specular>0.0 0.0 1.0 1</specular>
+                  </material>
+                </visual>
+                <collision name='collision'>
+                   <geometry>
+                     <box>
+                         <size>0.5 10.0 2.0</size>
+                     </box>
+                  </geometry>
+                </collision>
+           </link>
+       </model>
+   </world>
+</sdf>
