@@ -55,10 +55,10 @@
         </noise>
         
       </ray>
-      <visualize>true</visualize> 
+      <visualize>false</visualize> 
       <!-- Optional: set a custom gz transport topic (otherwise an auto one is used) -->
       <topic>/scan</topic> 
-      <frame_id>lidar_link</frame_id>
+      <gz_frame_id>laser_frame</gz_frame_id>
     </sensor>
   </gazebo>
   </robot>

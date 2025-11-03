@@ -62,5 +62,5 @@ def generate_launch_description():
             default_value='true',
             description='Enable ros2_control interfaces in the xacro'
         ),
-        node_robot_state_publisher,Lidar_Scan
+        node_robot_state_publisher
     ])
