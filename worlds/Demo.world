@@ -1,5 +1,6 @@
+<?xml version='1.0'?>
 <sdf version='1.9'>
-  <world name='demo'>
+  <world name='empty'>
      <plugin
          filename="ignition-gazebo-physics-system"
          name="ignition::gazebo::systems::Physics">
@@ -37,7 +38,7 @@
                      <box>
                          <size>0.5 10.0 2.0</size>
                      </box>
-                  </geometry>
+                   </geometry>
                 </collision>
            </link>
        </model>
