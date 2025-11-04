@@ -1,0 +1,6 @@
+Invoking command in '/home/jaj/dev_ws/src/my_bot/build/my_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/jaj/dev_ws/src/my_bot -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jaj/dev_ws/src/my_bot/install/my_bot
+Invoked command in '/home/jaj/dev_ws/src/my_bot/build/my_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/jaj/dev_ws/src/my_bot -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jaj/dev_ws/src/my_bot/install/my_bot
+Invoking command in '/home/jaj/dev_ws/src/my_bot/build/my_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/jaj/dev_ws/src/my_bot/build/my_bot -- -j4 -l4
+Invoked command in '/home/jaj/dev_ws/src/my_bot/build/my_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/jaj/dev_ws/src/my_bot/build/my_bot -- -j4 -l4
+Invoking command in '/home/jaj/dev_ws/src/my_bot/build/my_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/jaj/dev_ws/src/my_bot/build/my_bot
+Invoked command in '/home/jaj/dev_ws/src/my_bot/build/my_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/jaj/dev_ws/src/my_bot/build/my_bot
