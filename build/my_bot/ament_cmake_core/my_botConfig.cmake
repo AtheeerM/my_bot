@@ -16,7 +16,7 @@ set(_my_bot_CONFIG_INCLUDED TRUE)
 
 # output package information
 if(NOT my_bot_FIND_QUIETLY)
-  message(STATUS "Found my_bot: 0.0.0 (${my_bot_DIR})")
+  message(STATUS "Found my_bot: 0.0.1 (${my_bot_DIR})")
 endif()
 
 # warn when using a deprecated package

@@ -1,0 +1,31 @@
+[0.081s] Invoking command in '/home/jaj/dev_ws/src/my_bot/build/my_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/jaj/dev_ws/src/my_bot/build/my_bot -- -j4 -l4
+[0.282s] Invoked command in '/home/jaj/dev_ws/src/my_bot/build/my_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/jaj/dev_ws/src/my_bot/build/my_bot -- -j4 -l4
+[0.376s] Invoking command in '/home/jaj/dev_ws/src/my_bot/build/my_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/jaj/dev_ws/src/my_bot/build/my_bot
+[0.449s] -- Install configuration: ""
+[0.452s] -- Execute custom install script
+[0.455s] -- Symlinking: /home/jaj/dev_ws/src/my_bot/install/my_bot/share/my_bot/config/drive_bot.rviz
+[0.499s] -- Up-to-date symlink: /home/jaj/dev_ws/src/my_bot/install/my_bot/share/my_bot/config/empty.yaml
+[0.500s] -- Symlinking: /home/jaj/dev_ws/src/my_bot/install/my_bot/share/my_bot/config/view_bot.rviz
+[0.569s] -- Symlinking: /home/jaj/dev_ws/src/my_bot/install/my_bot/share/my_bot/description/gazebo_control.xacro
+[0.635s] -- Up-to-date symlink: /home/jaj/dev_ws/src/my_bot/install/my_bot/share/my_bot/description/inertial_macros.xacro
+[0.638s] -- Up-to-date symlink: /home/jaj/dev_ws/src/my_bot/install/my_bot/share/my_bot/description/robot.urdf.xacro
+[0.640s] -- Up-to-date symlink: /home/jaj/dev_ws/src/my_bot/install/my_bot/share/my_bot/description/robot_core.xacro
+[0.643s] -- Symlinking: /home/jaj/dev_ws/src/my_bot/install/my_bot/share/my_bot/launch/launch_sim.launch.py
+[0.693s] -- Up-to-date symlink: /home/jaj/dev_ws/src/my_bot/install/my_bot/share/my_bot/launch/rsp.launch.py
+[0.696s] -- Up-to-date symlink: /home/jaj/dev_ws/src/my_bot/install/my_bot/share/my_bot/worlds/empty.world
+[0.699s] -- Up-to-date symlink: /home/jaj/dev_ws/src/my_bot/install/my_bot/share/ament_index/resource_index/package_run_dependencies/my_bot
+[0.702s] -- Up-to-date symlink: /home/jaj/dev_ws/src/my_bot/install/my_bot/share/ament_index/resource_index/parent_prefix_path/my_bot
+[0.707s] -- Up-to-date symlink: /home/jaj/dev_ws/src/my_bot/install/my_bot/share/my_bot/environment/ament_prefix_path.sh
+[0.710s] -- Up-to-date symlink: /home/jaj/dev_ws/src/my_bot/install/my_bot/share/my_bot/environment/ament_prefix_path.dsv
+[0.713s] -- Up-to-date symlink: /home/jaj/dev_ws/src/my_bot/install/my_bot/share/my_bot/environment/path.sh
+[0.715s] -- Up-to-date symlink: /home/jaj/dev_ws/src/my_bot/install/my_bot/share/my_bot/environment/path.dsv
+[0.716s] -- Up-to-date symlink: /home/jaj/dev_ws/src/my_bot/install/my_bot/share/my_bot/local_setup.bash
+[0.718s] -- Up-to-date symlink: /home/jaj/dev_ws/src/my_bot/install/my_bot/share/my_bot/local_setup.sh
+[0.719s] -- Up-to-date symlink: /home/jaj/dev_ws/src/my_bot/install/my_bot/share/my_bot/local_setup.zsh
+[0.722s] -- Up-to-date symlink: /home/jaj/dev_ws/src/my_bot/install/my_bot/share/my_bot/local_setup.dsv
+[0.723s] -- Symlinking: /home/jaj/dev_ws/src/my_bot/install/my_bot/share/my_bot/package.dsv
+[0.755s] -- Up-to-date symlink: /home/jaj/dev_ws/src/my_bot/install/my_bot/share/ament_index/resource_index/packages/my_bot
+[0.757s] -- Up-to-date symlink: /home/jaj/dev_ws/src/my_bot/install/my_bot/share/my_bot/cmake/my_botConfig.cmake
+[0.759s] -- Up-to-date symlink: /home/jaj/dev_ws/src/my_bot/install/my_bot/share/my_bot/cmake/my_botConfig-version.cmake
+[0.763s] -- Up-to-date symlink: /home/jaj/dev_ws/src/my_bot/install/my_bot/share/my_bot/package.xml
+[0.776s] Invoked command in '/home/jaj/dev_ws/src/my_bot/build/my_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/jaj/dev_ws/src/my_bot/build/my_bot

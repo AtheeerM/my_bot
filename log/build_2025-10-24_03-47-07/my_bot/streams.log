@@ -1,0 +1,34 @@
+[0.061s] Invoking command in '/home/jaj/dev_ws/src/my_bot/build/my_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/jaj/dev_ws/src/my_bot/build/my_bot -- -j4 -l4
+[0.182s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.740s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.808s] -- Found controller_interface: 2.52.0 (/opt/ros/humble/share/controller_interface/cmake)
+[1.236s] -- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[1.290s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[1.357s] -- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[1.440s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.555s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[2.988s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[3.015s] -- Found rmw_fastrtps_cpp: 6.2.8 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[3.194s] -- Found TinyXML2 via Config file: TinyXML2_DIR-NOTFOUND
+[3.441s] -- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[3.454s] -- Found TinyXML2 via Config file: TinyXML2_DIR-NOTFOUND
+[3.546s] -- Found FastRTPS: /opt/ros/humble/include  
+[3.559s] -- Found TinyXML2 via Config file: TinyXML2_DIR-NOTFOUND
+[3.591s] -- Found TinyXML2 via Config file: TinyXML2_DIR-NOTFOUND
+[3.629s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[3.717s] -- Looking for pthread.h
+[4.447s] -- Looking for pthread.h - found
+[4.452s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[4.917s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[4.922s] -- Found Threads: TRUE  
+[5.180s] [31mCMake Error at /opt/ros/humble/share/pluginlib/cmake/pluginlib_export_plugin_description_file.cmake:84 (message):
+[5.181s]   Given plugin description file
+[5.181s]   '/home/jaj/dev_ws/src/my_bot/my_controller.xml' does not exist
+[5.181s] Call Stack (most recent call first):
+[5.181s]   CMakeLists.txt:40 (pluginlib_export_plugin_description_file)
+[5.182s] 
+[5.182s] [0m
+[5.183s] -- Configuring incomplete, errors occurred!
+[5.183s] See also "/home/jaj/dev_ws/src/my_bot/build/my_bot/CMakeFiles/CMakeOutput.log".
+[5.212s] gmake: *** [Makefile:226: cmake_check_build_system] Error 1
+[5.219s] Invoked command in '/home/jaj/dev_ws/src/my_bot/build/my_bot' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/jaj/dev_ws/src/my_bot/build/my_bot -- -j4 -l4
