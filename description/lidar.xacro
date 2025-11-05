@@ -31,7 +31,7 @@
   <joint name="joint-chassis-lidar_body" type="fixed">
     <parent link="chassis-link"/>
     <child  link="lidar_body"/>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <origin xyz="0 0 -0.1" rpy="0 0 0"/>
   </joint>
 
   <!-- 2) The optical frame (where the scan originates) just above the chassis top -->
@@ -41,7 +41,7 @@
     <!-- Place the optical frame slightly above the top surface to avoid self-hits -->
     <!-- chassis top = 0.025; put optical frame at 0.028 (3 mm clearance) -->
     <child  link="laser_frame"/>
-    <origin xyz="0 0 0.008" rpy="0 0 0"/>
+    <origin xyz="0 0 0.01" rpy="0 0 0"/>
   </joint>
 
   <!-- Gazebo Fortress (gz-sim) sensor: GPU lidar publishing on a gz transport topic -->
