@@ -1,25 +1,36 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
-  <!-- LiDAR link (puck) -->
+  <!-- === Tiny LiDAR puck (visual only) === -->
   <link name="laser_frame">
+    <!-- Small top puck: radius 0.015 m, height 0.015 m -->
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry><cylinder radius="0.05" length="0.04"/></geometry>
+      <geometry><cylinder radius="0.015" length="0.015"/></geometry>
+      <material name="blue"/>
     </visual>
+    <!-- Optional skinny mast so it looks mounted -->
+    <visual>
+      <origin xyz="0 0 -0.02" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.004" length="0.04"/></geometry>
+      <material name="blue"/>
+    </visual>
+
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry><cylinder radius="0.05" length="0.04"/></geometry>
+      <geometry><cylinder radius="0.015" length="0.015"/></geometry>
     </collision>
+
+    <!-- Light inertial to match the tiny visual -->
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="0.10"/>
-      <inertia ixx="1e-4" ixy="0" ixz="0" iyy="1e-4" iyz="0" izz="2e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="5e-5" ixy="0" ixz="0" iyy="5e-5" iyz="0" izz="8e-5"/>
     </inertial>
   </link>
 
-  <!-- Fixed mount: center of chassis, 6 cm up (adjust if you want) -->
+  <!-- Fixed mount: centered on chassis, ~6 cm above it (adjust as you like) -->
   <joint name="joint-chassis-lidar" type="fixed">
-    <parent link="chassis-link"/>       <!-- change to "chassis" if that's your name -->
+    <parent link="chassis-link"/>
     <child link="laser_frame"/>
     <origin xyz="0 0 0.06" rpy="0 0 0"/>
   </joint>
