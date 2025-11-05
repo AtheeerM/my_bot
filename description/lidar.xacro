@@ -41,7 +41,7 @@
     <!-- Place the optical frame slightly above the top surface to avoid self-hits -->
     <!-- chassis top = 0.025; put optical frame at 0.028 (3 mm clearance) -->
     <child  link="laser_frame"/>
-    <origin xyz="0 0 -0.03" rpy="0 0 0"/>
+    <origin xyz="0 0 -0.04" rpy="0 0 0"/>
   </joint>
 
   <!-- Gazebo Fortress (gz-sim) sensor: GPU lidar publishing on a gz transport topic -->
