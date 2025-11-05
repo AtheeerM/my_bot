@@ -1,38 +1,47 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
-  <!-- === Tiny LiDAR puck (visual only) === -->
-  <link name="laser_frame">
-    <!-- Small top puck: radius 0.015 m, height 0.015 m -->
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry><cylinder radius="0.015" length="0.015"/></geometry>
-      <material name="blue"/>
-    </visual>
-    <!-- Optional skinny mast so it looks mounted -->
-    <visual>
-      <origin xyz="0 0 -0.02" rpy="0 0 0"/>
-      <geometry><cylinder radius="0.004" length="0.04"/></geometry>
-      <material name="blue"/>
-    </visual>
+  <!-- ========= LiDAR "inside chassis" with an optical frame above top ======== -->
 
+  <!-- 1) A hidden LiDAR body inside the chassis (visual only, tiny collision) -->
+  <link name="lidar_body">
+    <visual>
+      <!-- Put the can inside the 10 mm-thick chassis plate -->
+      <!-- chassis center is at z=0.02, thickness=0.01 -> top at 0.025 -->
+      <origin xyz="0 0 0.02" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.025" length="0.03"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
     <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry><cylinder radius="0.015" length="0.015"/></geometry>
+      <!-- Tiny collision so it doesn't interfere with rays -->
+      <origin xyz="0 0 0.02" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.001"/>
+      </geometry>
     </collision>
-
-    <!-- Light inertial to match the tiny visual -->
     <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="0.05"/>
-      <inertia ixx="5e-5" ixy="0" ixz="0" iyy="5e-5" iyz="0" izz="8e-5"/>
+      <origin xyz="0 0 0.02" rpy="0 0 0"/>
+      <mass value="0.15"/>
+      <inertia ixx="1e-4" ixy="0" ixz="0" iyy="1e-4" iyz="0" izz="1e-4"/>
     </inertial>
   </link>
 
-  <!-- Fixed mount: centered on chassis, ~6 cm above it (adjust as you like) -->
-  <joint name="joint-chassis-lidar" type="fixed">
+  <!-- Fixed mount: lidar_body is bolted to the chassis center -->
+  <joint name="joint-chassis-lidar_body" type="fixed">
     <parent link="chassis-link"/>
-    <child link="laser_frame"/>
-    <origin xyz="0 0 0.06" rpy="0 0 0"/>
+    <child  link="lidar_body"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- 2) The optical frame (where the scan originates) just above the chassis top -->
+  <link name="laser_frame"/>
+  <joint name="joint-lidar_body-laser_frame" type="fixed">
+    <parent link="lidar_body"/>
+    <!-- Place the optical frame slightly above the top surface to avoid self-hits -->
+    <!-- chassis top = 0.025; put optical frame at 0.028 (3 mm clearance) -->
+    <child  link="laser_frame"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
   </joint>
 
   <!-- Gazebo Fortress (gz-sim) sensor: GPU lidar publishing on a gz transport topic -->
