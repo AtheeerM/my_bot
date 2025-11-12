@@ -245,7 +245,7 @@
   <child  link="package_box_link"/>
   <!-- Place at rear (−X), centered in Y, sitting on chassis top -->
   <!-- chassis: 0.252336 x 0.239796 x 0.01 -->
-  <origin xyz="-0.0712 0 0.02" rpy="0 0 0"/>
+  <origin xyz="-0.0712 0 0.098" rpy="0 0 0"/>
 </joint>
 
 <!-- ===== Gazebo visualization & physics ===== -->
