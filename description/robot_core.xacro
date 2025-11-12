@@ -94,11 +94,14 @@
       <inertia ixx="3.4e-05" ixy="0" ixz="0" iyy="3.4e-05" iyz="0" izz="6.3e-05"/>
     </inertial>
   </link>
+  <!-- MID RIGHT (free-rolling, mimics front-right) -->
   <joint name="joint-chassis-mid-right-wheel" type="continuous">
     <parent link="chassis-link"/>
     <child  link="mid-right-wheel-link"/>
     <origin xyz="0.000 0.105 0" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
+    <!-- make the mid wheel spin exactly like the powered right wheel -->
+    <mimic joint="joint-chassis-front-right-wheel" multiplier="1.0" offset="0.0"/>
   </joint>
 
   <!-- REAR RIGHT (existing “rare-right-wheel-link”) -->
@@ -167,11 +170,14 @@
       <inertia ixx="3.4e-05" ixy="0" ixz="0" iyy="3.4e-05" iyz="0" izz="6.3e-05"/>
     </inertial>
   </link>
+  <!-- MID LEFT (free-rolling, mimics front-left) -->
   <joint name="joint-chassis-mid-left-wheel" type="continuous">
     <parent link="chassis-link"/>
     <child  link="mid-left-wheel-link"/>
     <origin xyz="0.000 -0.105 0" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
+    <!-- make the mid wheel spin exactly like the powered left wheel -->
+    <mimic joint="joint-chassis-front-left-wheel" multiplier="1.0" offset="0.0"/>
   </joint>
 
   <!-- REAR LEFT (existing “rare-left-wheel-link”) -->
