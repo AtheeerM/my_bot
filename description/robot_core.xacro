@@ -209,5 +209,52 @@
   <gazebo reference="front-left-wheel-link"><mu1>10000.0</mu1><mu2>10000.0</mu2><material>Gazebo/Purple</material></gazebo>
   <gazebo reference="mid-left-wheel-link"><mu1>10000.0</mu1><mu2>10000.0</mu2><material>Gazebo/Purple</material></gazebo>
   <gazebo reference="rare-left-wheel-link"><mu1>10000.0</mu1><mu2>10000.0</mu2><material>Gazebo/Purple</material></gazebo>
+<!-- ===== Package box (rear cargo) =====
+     Dimensions (mm): width=200, height=186, depth(extrude)=100
+     URDF (m): X=0.10, Y=0.20, Z=0.186
+-->
+<link name="package_box_link">
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <box size="0.10 0.20 0.186"/>
+    </geometry>
+    <material name="cargo_purple">
+      <color rgba="0.6 0.2 0.8 1"/>
+    </material>
+  </visual>
+
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <box size="0.10 0.20 0.186"/>
+    </geometry>
+  </collision>
+
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="0.5"/>
+    <inertia ixx="0.003108" ixy="0" ixz="0"
+             iyy="0.001858" iyz="0"
+             izz="0.002083"/>
+  </inertial>
+</link>
+
+<joint name="joint-chassis-package-box" type="fixed">
+  <parent link="chassis-link"/>
+  <child  link="package_box_link"/>
+  <!-- Place at rear (−X), centered in Y, sitting on chassis top -->
+  <!-- chassis: 0.252336 x 0.239796 x 0.01 -->
+  <origin xyz="-0.0712 0 0.02" rpy="0 0 0"/>
+</joint>
+
+<!-- ===== Gazebo visualization & physics ===== -->
+<gazebo reference="package_box_link">
+  <material>Gazebo/Yellow</material>
+  <mu1>1.0</mu1>       <!-- friction coefficient 1 -->
+  <mu2>1.0</mu2>       <!-- friction coefficient 2 -->
+  <kp>100000.0</kp>    <!-- contact stiffness -->
+  <kd>1.0</kd>         <!-- damping -->
+</gazebo>
 
 </robot>
