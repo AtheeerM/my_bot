@@ -24,8 +24,8 @@ diff_drive_controller:
       'joint-chassis-front-right-wheel',
       'joint-chassis-rare-right-wheel'
     ]
-    wheel_separation: 0.13
-    wheel_radius: 0.02
+    wheel_separation: 0.21
+    wheel_radius: 0.03965
     use_stamped_vel: false
     open_loop: false
     enable_odom_tf: true
