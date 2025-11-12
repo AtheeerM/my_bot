@@ -1,190 +1,213 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
-
-
-  <!-- BASE LINK -->
-
-  <link name="base_link">
-
-  </link>
-
-  <!-- BASE_FOOTPRINT LINK -->
-
+  <!-- ===== BASE LINK ===== -->
+  <link name="base_link"/>
+  <!-- base_footprint -->
   <joint name="base_footprint_joint" type="fixed">
-      <parent link="base_link"/>
-      <child link="base_footprint"/>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child  link="base_footprint"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
   </joint>
+  <link name="base_footprint"/>
 
-  <link name="base_footprint">
-  </link>
-  
-  <!--chassis link-->
+  <!-- ===== CHASSIS ===== -->
+  <!-- from UGV02 DXF top view: 252.336 x 239.796 x 10 mm -->
   <link name="chassis-link">
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <!-- from PDF: ~120.02 x 112.87 x 10 mm -->
-        <box size="0.12002 0.11287 0.01"/>
+        <box size="0.252336 0.239796 0.01"/>
       </geometry>
       <material name="brown">
         <color rgba="0.3 0 0.4 1"/>
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <box size="0.12002 0.11287 0.01"/>
+        <box size="0.252336 0.239796 0.01"/>
       </geometry>
     </collision>
     <inertial>
+      <!-- you can tune mass later if you have a measured value -->
       <mass value="0.6"/>
-      <!-- box inertia about its center: ixx=m*(y^2+z^2)/12 etc. -->
-      <inertia ixx="0.000641981845" ixy="0" ixz="0" iyy="0.00072524002" iyz="0" izz="0.001357221865"/>
+      <inertia ixx="0.00065" ixy="0" ixz="0" iyy="0.00073" iyz="0" izz="0.00136"/>
     </inertial>
   </link>
+
+  <!-- original vertical offset kept -->
   <joint name="joint-base-chassis" type="fixed">
     <parent link="base_link"/>
-    <child link="chassis-link"/>
-    <!-- keep same height reference as your original (raise chassis center 20 mm) -->
-    <origin rpy="0 0 0" xyz="0 0 0.02"/>
+    <child  link="chassis-link"/>
+    <origin xyz="0 0 0.02" rpy="0 0 0"/>
   </joint>
+
   <material name="blue">
     <color rgba="0 0.4 0.5 1"/>
   </material>
-  <!-- ${x_position}-${y_position}-wheel-link -->
+
+  <!-- ===== WHEEL TEMPLATE (values inlined for clarity) =====
+       wheel radius from DXF arcs ~39.65 mm -> radius="0.03965"
+       wheel length (tread width) assumed 0.04 m (adjust if you know exact)
+  -->
+
+  <!-- ========== RIGHT SIDE (front, mid, rear) ========== -->
+  <!-- FRONT RIGHT (existing) -->
   <link name="front-right-wheel-link">
     <visual>
-      <origin rpy="1.5707963267948966 0 0" xyz="0 0 0"/>
-      <geometry>
-        <!-- from PDF: wheel Ø~58 mm, width ~12 mm -->
-        <cylinder length="0.012" radius="0.029"/>
-      </geometry>
+      <origin xyz="0 0 0" rpy="1.5707963267948966 0 0"/>
+      <geometry><cylinder length="0.04" radius="0.03965"/></geometry>
       <material name="blue"/>
     </visual>
     <collision>
-      <origin rpy="1.5707963267948966 0 0" xyz="0 0 0"/>
-      <geometry>
-        <cylinder length="0.012" radius="0.029"/>
-      </geometry>
+      <origin xyz="0 0 0" rpy="1.5707963267948966 0 0"/>
+      <geometry><cylinder length="0.04" radius="0.03965"/></geometry>
     </collision>
     <inertial>
-      <origin rpy="1.5707963267948966 0 0" xyz="0 0 0"/>
+      <origin xyz="0 0 0" rpy="1.5707963267948966 0 0"/>
       <mass value="0.15"/>
-      <inertia ixx="3.33375e-05" ixy="0" ixz="0" iyy="3.33375e-05" iyz="0" izz="6.3075e-05"/>
+      <inertia ixx="3.4e-05" ixy="0" ixz="0" iyy="3.4e-05" iyz="0" izz="6.3e-05"/>
     </inertial>
   </link>
   <joint name="joint-chassis-front-right-wheel" type="continuous">
     <parent link="chassis-link"/>
-    <child link="front-right-wheel-link"/>
-    <!-- place wheel centers near the corners using new chassis size -->
-    <origin rpy="0 0 0" xyz="0.03101 0.051435 0"/>
+    <child  link="front-right-wheel-link"/>
+    <origin xyz="0.086 0.105 0" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
   </joint>
-  <!-- ${x_position}-${y_position}-wheel-link -->
-  <link name="front-left-wheel-link">
+
+  <!-- MID RIGHT (NEW) -->
+  <link name="mid-right-wheel-link">
     <visual>
-      <origin rpy="1.5707963267948966 0 0" xyz="0 0 0"/>
-      <geometry>
-        <cylinder length="0.012" radius="0.029"/>
-      </geometry>
+      <origin xyz="0 0 0" rpy="1.5707963267948966 0 0"/>
+      <geometry><cylinder length="0.04" radius="0.03965"/></geometry>
       <material name="blue"/>
     </visual>
     <collision>
-      <origin rpy="1.5707963267948966 0 0" xyz="0 0 0"/>
-      <geometry>
-        <cylinder length="0.012" radius="0.029"/>
-      </geometry>
+      <origin xyz="0 0 0" rpy="1.5707963267948966 0 0"/>
+      <geometry><cylinder length="0.04" radius="0.03965"/></geometry>
     </collision>
     <inertial>
-      <origin rpy="1.5707963267948966 0 0" xyz="0 0 0"/>
+      <origin xyz="0 0 0" rpy="1.5707963267948966 0 0"/>
       <mass value="0.15"/>
-      <inertia ixx="3.33375e-05" ixy="0" ixz="0" iyy="3.33375e-05" iyz="0" izz="6.3075e-05"/>
+      <inertia ixx="3.4e-05" ixy="0" ixz="0" iyy="3.4e-05" iyz="0" izz="6.3e-05"/>
     </inertial>
   </link>
-  <joint name="joint-chassis-front-left-wheel" type="continuous">
+  <joint name="joint-chassis-mid-right-wheel" type="continuous">
     <parent link="chassis-link"/>
-    <child link="front-left-wheel-link"/>
-    <origin rpy="0 0 0" xyz="0.03101 -0.051435 0"/>
+    <child  link="mid-right-wheel-link"/>
+    <origin xyz="0.000 0.105 0" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
   </joint>
-  <!-- ${x_position}-${y_position}-wheel-link -->
+
+  <!-- REAR RIGHT (existing “rare-right-wheel-link”) -->
   <link name="rare-right-wheel-link">
     <visual>
-      <origin rpy="1.5707963267948966 0 0" xyz="0 0 0"/>
-      <geometry>
-        <cylinder length="0.012" radius="0.029"/>
-      </geometry>
+      <origin xyz="0 0 0" rpy="1.5707963267948966 0 0"/>
+      <geometry><cylinder length="0.04" radius="0.03965"/></geometry>
       <material name="blue"/>
     </visual>
     <collision>
-      <origin rpy="1.5707963267948966 0 0" xyz="0 0 0"/>
-      <geometry>
-        <cylinder length="0.012" radius="0.029"/>
-      </geometry>
+      <origin xyz="0 0 0" rpy="1.5707963267948966 0 0"/>
+      <geometry><cylinder length="0.04" radius="0.03965"/></geometry>
     </collision>
     <inertial>
-      <origin rpy="1.5707963267948966 0 0" xyz="0 0 0"/>
+      <origin xyz="0 0 0" rpy="1.5707963267948966 0 0"/>
       <mass value="0.15"/>
-      <inertia ixx="3.33375e-05" ixy="0" ixz="0" iyy="3.33375e-05" iyz="0" izz="6.3075e-05"/>
+      <inertia ixx="3.4e-05" ixy="0" ixz="0" iyy="3.4e-05" iyz="0" izz="6.3e-05"/>
     </inertial>
   </link>
   <joint name="joint-chassis-rare-right-wheel" type="continuous">
     <parent link="chassis-link"/>
-    <child link="rare-right-wheel-link"/>
-    <origin rpy="0 0 0" xyz="-0.03101 0.051435 0"/>
+    <child  link="rare-right-wheel-link"/>
+    <origin xyz="-0.086 0.105 0" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
   </joint>
-  <!-- ${x_position}-${y_position}-wheel-link -->
-  <link name="rare-left-wheel-link">
+
+  <!-- ========== LEFT SIDE (front, mid, rear) ========== -->
+  <!-- FRONT LEFT (existing) -->
+  <link name="front-left-wheel-link">
     <visual>
-      <origin rpy="1.5707963267948966 0 0" xyz="0 0 0"/>
-      <geometry>
-        <cylinder length="0.012" radius="0.029"/>
-      </geometry>
+      <origin xyz="0 0 0" rpy="1.5707963267948966 0 0"/>
+      <geometry><cylinder length="0.04" radius="0.03965"/></geometry>
       <material name="blue"/>
     </visual>
     <collision>
-      <origin rpy="1.5707963267948966 0 0" xyz="0 0 0"/>
-      <geometry>
-        <cylinder length="0.012" radius="0.029"/>
-      </geometry>
+      <origin xyz="0 0 0" rpy="1.5707963267948966 0 0"/>
+      <geometry><cylinder length="0.04" radius="0.03965"/></geometry>
     </collision>
     <inertial>
-      <origin rpy="1.5707963267948966 0 0" xyz="0 0 0"/>
+      <origin xyz="0 0 0" rpy="1.5707963267948966 0 0"/>
       <mass value="0.15"/>
-      <inertia ixx="3.33375e-05" ixy="0" ixz="0" iyy="3.33375e-05" iyz="0" izz="6.3075e-05"/>
+      <inertia ixx="3.4e-05" ixy="0" ixz="0" iyy="3.4e-05" iyz="0" izz="6.3e-05"/>
+    </inertial>
+  </link>
+  <joint name="joint-chassis-front-left-wheel" type="continuous">
+    <parent link="chassis-link"/>
+    <child  link="front-left-wheel-link"/>
+    <origin xyz="0.086 -0.105 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <!-- MID LEFT (NEW) -->
+  <link name="mid-left-wheel-link">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5707963267948966 0 0"/>
+      <geometry><cylinder length="0.04" radius="0.03965"/></geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5707963267948966 0 0"/>
+      <geometry><cylinder length="0.04" radius="0.03965"/></geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="1.5707963267948966 0 0"/>
+      <mass value="0.15"/>
+      <inertia ixx="3.4e-05" ixy="0" ixz="0" iyy="3.4e-05" iyz="0" izz="6.3e-05"/>
+    </inertial>
+  </link>
+  <joint name="joint-chassis-mid-left-wheel" type="continuous">
+    <parent link="chassis-link"/>
+    <child  link="mid-left-wheel-link"/>
+    <origin xyz="0.000 -0.105 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <!-- REAR LEFT (existing “rare-left-wheel-link”) -->
+  <link name="rare-left-wheel-link">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5707963267948966 0 0"/>
+      <geometry><cylinder length="0.04" radius="0.03965"/></geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5707963267948966 0 0"/>
+      <geometry><cylinder length="0.04" radius="0.03965"/></geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="1.5707963267948966 0 0"/>
+      <mass value="0.15"/>
+      <inertia ixx="3.4e-05" ixy="0" ixz="0" iyy="3.4e-05" iyz="0" izz="6.3e-05"/>
     </inertial>
   </link>
   <joint name="joint-chassis-rare-left-wheel" type="continuous">
     <parent link="chassis-link"/>
-    <child link="rare-left-wheel-link"/>
-    <origin rpy="0 0 0" xyz="-0.03101 -0.051435 0"/>
+    <child  link="rare-left-wheel-link"/>
+    <origin xyz="-0.086 -0.105 0" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
   </joint>
+
+  <!-- ===== Gazebo material/friction (kept & extended) ===== -->
   <gazebo reference="chassis-link">
     <material>Gazebo/DarkGrey</material>
   </gazebo>
-   
-  <gazebo reference="front-right-wheel-link">
-    <mu1>10000.0 </mu1>
-    <mu2>10000.0 </mu2>
-    <material>Gazebo/Purple</material>
-  </gazebo>
-  <gazebo reference="front-left-wheel-link">
-    <mu1>10000.0 </mu1>
-    <mu2>10000.0 </mu2>
-    <material>Gazebo/Purple</material>
-  </gazebo>
-  <gazebo reference="rare-right-wheel-link">
-    <mu1>10000.0 </mu1>
-    <mu2>10000.0 </mu2>
-    <material>Gazebo/Purple</material>
-  </gazebo>
-  <gazebo reference="rare-left-wheel-link">
-    <mu1>10000.0 </mu1>
-    <mu2>10000.0 </mu2>
-    <material>Gazebo/Purple</material>
-  </gazebo>
+
+  <gazebo reference="front-right-wheel-link"><mu1>10000.0</mu1><mu2>10000.0</mu2><material>Gazebo/Purple</material></gazebo>
+  <gazebo reference="mid-right-wheel-link"><mu1>10000.0</mu1><mu2>10000.0</mu2><material>Gazebo/Purple</material></gazebo>
+  <gazebo reference="rare-right-wheel-link"><mu1>10000.0</mu1><mu2>10000.0</mu2><material>Gazebo/Purple</material></gazebo>
+
+  <gazebo reference="front-left-wheel-link"><mu1>10000.0</mu1><mu2>10000.0</mu2><material>Gazebo/Purple</material></gazebo>
+  <gazebo reference="mid-left-wheel-link"><mu1>10000.0</mu1><mu2>10000.0</mu2><material>Gazebo/Purple</material></gazebo>
+  <gazebo reference="rare-left-wheel-link"><mu1>10000.0</mu1><mu2>10000.0</mu2><material>Gazebo/Purple</material></gazebo>
+
 </robot>
