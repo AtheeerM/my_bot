@@ -256,5 +256,4 @@
   <kp>100000.0</kp>    <!-- contact stiffness -->
   <kd>1.0</kd>         <!-- damping -->
 </gazebo>
-
 </robot>

@@ -1,52 +1,54 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
-  <!-- Tiny puck; no mast -->
-  <link name="laser_frame">
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry><cylinder radius="0.012" length="0.010"/></geometry>
-    </visual>
-    <collision>
-      <!-- keep collision small too -->
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry><cylinder radius="0.012" length="0.010"/></geometry>
-    </collision>
-    <inertial>
-      <mass value="0.03"/>
-      <inertia ixx="3e-5" ixy="0" ixz="0" iyy="3e-5" iyz="0" izz="5e-5"/>
-    </inertial>
-  </link>
+  <!-- LiDAR puck mounted on TOP of the rear package box -->
+<link name="laser_frame">
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry><cylinder radius="0.012" length="0.010"/></geometry>
+    <material name="black"><color rgba="0.05 0.05 0.05 1"/></material>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry><cylinder radius="0.012" length="0.010"/></geometry>
+  </collision>
+  <inertial>
+    <mass value="0.03"/>
+    <inertia ixx="3e-5" ixy="0" ixz="0" iyy="3e-5" iyz="0" izz="5e-5"/>
+  </inertial>
+</link>
 
-  <joint name="joint-chassis-lidar" type="fixed">
-    <parent link="chassis-link"/>
-    <child link="laser_frame"/>
-    <!-- lift it a bit so it clears the deck -->
-    <origin xyz="0 0 0.08" rpy="0 0 0"/>
-  </joint>
+<!-- IMPORTANT: parent is the package box, not the chassis -->
+<joint name="joint-chassis-lidar" type="fixed">
+  <parent link="package_box_link"/>
+  <child  link="laser_frame"/>
+  <!-- Centered on the box in X/Y; sits exactly on the top surface:
+       z_offset = 0.186/2 + 0.010/2 = 0.098 -->
+  <origin xyz="0 0 0.098" rpy="0 0 0"/>
+</joint>
 
-  <!-- Gazebo Fortress (gz-sim) sensor: GPU lidar publishing on a gz transport topic -->
- <gazebo reference="laser_frame">
-        <material>Gazebo/Black</material>
+<!-- Gazebo sensor attached to the LiDAR link -->
+<gazebo reference="laser_frame">
+  <material>Gazebo/Black</material>
+  <sensor name="laser" type="gpu_lidar">
+    <pose>0 0 0 0 0 0</pose>
+    <visualize>false</visualize>
+    <update_rate>10</update_rate>
+    <lidar>
+      <scan>
+        <horizontal>
+          <samples>360</samples>
+          <min_angle>-3.14159</min_angle>
+          <max_angle> 3.14159</max_angle>
+        </horizontal>
+      </scan>
+      <range>
+        <min>0.3</min>
+        <max>12.0</max>
+      </range>
+    </lidar>
+    <topic>scan</topic>
+    <gz_frame_id>laser_frame</gz_frame_id>
+  </sensor>
+</gazebo>
 
-        <sensor name="laser" type="gpu_lidar">
-            <pose> 0 0 0 0 0 0 </pose>
-            <visualize>false</visualize>
-            <update_rate>10</update_rate>
-            <lidar>
-                <scan>
-                    <horizontal>
-                        <samples>360</samples>
-                        <min_angle>-3.14</min_angle>
-                        <max_angle>3.14</max_angle>
-                    </horizontal>
-                </scan>
-                <range>
-                    <min>0.3</min>
-                    <max>12</max>
-                </range>
-            </lidar>
-            <topic>scan</topic>
-            <gz_frame_id>laser_frame</gz_frame_id>
-        </sensor>
-    </gazebo>
 </robot>
